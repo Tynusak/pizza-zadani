@@ -1,0 +1,11 @@
+.button {
+  padding: 10px;
+  background-color: #e9e9af;
+  border: 1px solid;
+  border-radius: 20px;
+}
+
+.button--vegan {
+  background-color: rgba(181, 252, 181, 0.907);
+  color: green;
+}

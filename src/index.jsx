@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { createRoot } from 'react-dom/client';
 import ToppingsSelect from './components/ToppingsSelect';
 import './style.css';
+import { PrefsContext } from './context';
+import { Header } from './components/Header';
 
 const toppings = [
   {
@@ -79,19 +81,20 @@ const toppings = [
 ];
 
 const App = () => {
+  const [veganOnly, setVeganOnly] = useState(false);
+
+  const handleVeganOnly = () => {
+    setVeganOnly(!veganOnly);
+  };
+
   return (
-    <div className="container">
-      <header>
-        <div className="pizza" />
-        <h1>Build your own pizza</h1>
-      </header>
+    <PrefsContext.Provider value={{ veganOnly, handleVeganOnly }}>
+      <Header />
       <main>
         <ToppingsSelect toppings={toppings} />
       </main>
-    </div>
+    </PrefsContext.Provider>
   );
 };
 
-createRoot(
-  document.querySelector('#app'),
-).render(<App />);
+createRoot(document.querySelector('#app')).render(<App />);
